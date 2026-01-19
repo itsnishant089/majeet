@@ -8,6 +8,45 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- Full Page Intro Animation -->
+    <div class="intro-loader" id="introLoader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <div class="logo-circle">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <div class="pulse-ring"></div>
+                <div class="pulse-ring delay-1"></div>
+                <div class="pulse-ring delay-2"></div>
+            </div>
+            <h1 class="loader-title">
+                <span class="letter" data-letter="W">W</span>
+                <span class="letter" data-letter="e">e</span>
+                <span class="letter" data-letter="l">l</span>
+                <span class="letter" data-letter="c">c</span>
+                <span class="letter" data-letter="o">o</span>
+                <span class="letter" data-letter="m">m</span>
+                <span class="letter" data-letter="e">e</span>
+            </h1>
+            <p class="loader-subtitle">Manjeet Yadav - Pharmacist Portfolio</p>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="loader-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -61,10 +100,10 @@
                         <a href="mailto:manjeetakoda2233@gmail.com" class="social-icon" title="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="#" class="social-icon" title="Instagram">
+                        <a href="https://www.instagram.com/manjeet__hr?igsh=MTc2cHdubGZobHdjZA==" target="_blank" class="social-icon" title="Instagram">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="social-icon" title="Snapchat">
+                        <a href="https://www.snapchat.com/add/officialhr34?share_id=giZmMcmHdgA&locale=en-IN" target="_blank" class="social-icon" title="Snapchat">
                             <i class="fab fa-snapchat"></i>
                         </a>
                     </div>
@@ -86,21 +125,60 @@
                 <div class="title-underline"></div>
             </div>
             <div class="profile-content">
-                <div class="profile-card">
-                    <div class="card-icon">
-                        <i class="fas fa-user-md"></i>
+                <div class="profile-main-card">
+                    <div class="profile-card-left">
+                        <div class="profile-icon-wrapper">
+                            <div class="profile-icon-bg"></div>
+                            <div class="profile-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">2+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100+</div>
+                                <div class="stat-label">Patients Served</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Accuracy</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="profile-text">
-                        I have completed <strong>D.Pharmacy</strong> and am currently pursuing <strong>B.Pharmacy</strong>. 
-                        With a strong academic background and hands-on exposure, I aim to build a career as a pharmacist 
-                        by applying my knowledge of medicines and healthcare in real-world practice with dedication, accuracy, 
-                        and patient care.
-                    </p>
-                    <p class="profile-text">
-                        Completed D.Pharmacy and currently pursuing B.Pharmacy from Guru Jambheshwar University of Science 
-                        and Technology (GJUS&T). Aspiring pharmacist with strong academic knowledge and hands-on exposure, 
-                        dedicated to accurate dispensing, medication safety, and quality patient care.
-                    </p>
+                    <div class="profile-card-right">
+                        <div class="profile-header">
+                            <h3 class="profile-greeting">Hello, I'm</h3>
+                            <h2 class="profile-name">Manjeet Yadav</h2>
+                            <p class="profile-tagline">Aspiring Pharmacist | Healthcare Professional</p>
+                        </div>
+                        <div class="profile-description">
+                            <div class="description-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <p>
+                                    I have completed <strong>D.Pharmacy</strong> and am currently pursuing <strong>B.Pharmacy</strong> 
+                                    from Guru Jambheshwar University of Science and Technology (GJUS&T).
+                                </p>
+                            </div>
+                            <div class="description-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <p>
+                                    With a strong academic background and hands-on exposure, I aim to build a career as a pharmacist 
+                                    by applying my knowledge of medicines and healthcare in real-world practice with dedication, 
+                                    accuracy, and patient care.
+                                </p>
+                            </div>
+                            <div class="description-item">
+                                <i class="fas fa-star"></i>
+                                <p>
+                                    Aspiring pharmacist with strong academic knowledge and hands-on exposure, dedicated to accurate 
+                                    dispensing, medication safety, and quality patient care.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,17 +247,6 @@
                 </div>
                 <div class="education-card">
                     <div class="education-icon">
-                        <i class="fas fa-school"></i>
-                    </div>
-                    <h3 class="education-degree">12th - Sciences</h3>
-                    <p class="education-institution">Govt. Sr. Sec. School, Akoda (M.Garh)</p>
-                    <p class="education-grade">Grade: <strong>84%</strong></p>
-                    <div class="education-bar">
-                        <div class="education-progress" style="width: 84%"></div>
-                    </div>
-                </div>
-                <div class="education-card">
-                    <div class="education-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3 class="education-degree">BCA</h3>
@@ -187,6 +254,17 @@
                     <p class="education-grade">Completed: Jul 2021</p>
                     <div class="education-bar">
                         <div class="education-progress" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3 class="education-degree">12th - Sciences</h3>
+                    <p class="education-institution">Govt. Sr. Sec. School, Akoda (M.Garh)</p>
+                    <p class="education-grade">Grade: <strong>84%</strong></p>
+                    <div class="education-bar">
+                        <div class="education-progress" style="width: 84%"></div>
                     </div>
                 </div>
             </div>
@@ -261,6 +339,15 @@
                 <div class="title-underline"></div>
             </div>
             <div class="affiliations-grid">
+                <div class="affiliation-card featured-udymita">
+                    <div class="affiliation-badge">Core Team</div>
+                    <div class="affiliation-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Udymita Core Team</h3>
+                    <p class="affiliation-description">Startup Supporter Society</p>
+                    <p class="affiliation-role">Core Team Member</p>
+                </div>
                 <div class="affiliation-card">
                     <div class="affiliation-icon">
                         <i class="fas fa-laptop"></i>
@@ -350,8 +437,8 @@
             <div class="footer-social">
                 <a href="https://wa.me/918307755816" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:manjeetakoda2233@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-snapchat"></i></a>
+                <a href="https://www.instagram.com/manjeet__hr?igsh=MTc2cHdubGZobHdjZA==" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.snapchat.com/add/officialhr34?share_id=giZmMcmHdgA&locale=en-IN" target="_blank"><i class="fab fa-snapchat"></i></a>
             </div>
         </div>
     </footer>

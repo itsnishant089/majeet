@@ -1,3 +1,20 @@
+// Full Page Intro Animation
+window.addEventListener('load', () => {
+    const introLoader = document.getElementById('introLoader');
+    const body = document.body;
+    
+    // Hide loader after animation completes
+    setTimeout(() => {
+        introLoader.classList.add('hide');
+        body.classList.add('intro-loaded');
+        
+        // Remove loader from DOM after transition
+        setTimeout(() => {
+            introLoader.style.display = 'none';
+        }, 500);
+    }, 3500); // Total animation time: 3.5 seconds
+});
+
 // Mobile Menu Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -60,60 +77,73 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all sections and cards
-document.querySelectorAll('.section, .education-card, .skill-item, .affiliation-card, .contact-card, .timeline-item').forEach(el => {
+// Observe all sections and cards with staggered animations
+const animatedElements = document.querySelectorAll('.section, .education-card, .skill-item, .affiliation-card, .contact-card, .timeline-item, .profile-card');
+animatedElements.forEach((el, index) => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transition = `opacity 0.8s ease ${index * 0.1}s, transform 0.8s ease ${index * 0.1}s`;
     observer.observe(el);
 });
 
-// Add parallax effect to hero section
+// Enhanced parallax effect to hero section
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    const heroImage = document.querySelector('.hero-image');
+    const heroText = document.querySelector('.hero-text');
+    
+    if (hero && scrolled < window.innerHeight) {
+        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+        
+        if (heroImage) {
+            heroImage.style.transform = `translateY(${scrolled * 0.2}px) rotate(${scrolled * 0.05}deg)`;
+        }
+        
+        if (heroText) {
+            heroText.style.transform = `translateY(${scrolled * 0.1}px)`;
+            heroText.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+        }
     }
 });
 
-// Add typing effect to hero title (optional enhancement)
+// Add typing effect to hero title with cursor
 const heroTitle = document.querySelector('.hero-title .title-line');
 if (heroTitle) {
     const text = heroTitle.textContent;
     heroTitle.textContent = '';
+    heroTitle.style.borderRight = '3px solid white';
+    heroTitle.style.animation = 'blinkCursor 0.8s infinite';
     let index = 0;
     
     function typeWriter() {
         if (index < text.length) {
             heroTitle.textContent += text.charAt(index);
             index++;
-            setTimeout(typeWriter, 100);
+            setTimeout(typeWriter, 120);
+        } else {
+            // Remove cursor after typing
+            setTimeout(() => {
+                heroTitle.style.borderRight = 'none';
+            }, 1000);
         }
     }
     
     // Start typing effect after a short delay
-    setTimeout(typeWriter, 500);
+    setTimeout(typeWriter, 800);
 }
 
-// Counter animation for education progress bars
-const progressBars = document.querySelectorAll('.education-progress');
-const progressObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const width = entry.target.style.width;
-            entry.target.style.width = '0';
-            setTimeout(() => {
-                entry.target.style.width = width;
-            }, 200);
-            progressObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
+// Add blinking cursor animation
+const cursorStyle = document.createElement('style');
+cursorStyle.textContent = `
+    @keyframes blinkCursor {
+        0%, 50% { border-color: white; }
+        51%, 100% { border-color: transparent; }
+    }
+`;
+document.head.appendChild(cursorStyle);
 
-progressBars.forEach(bar => {
-    progressObserver.observe(bar);
-});
+// Counter animation for education progress bars - removed duplicate, using the one below
 
 // Add floating animation to badges
 const badges = document.querySelectorAll('.floating-badge, .education-icon, .skill-icon');
@@ -209,4 +239,80 @@ activeStyle.textContent = `
 `;
 document.head.appendChild(activeStyle);
 
-console.log('Portfolio loaded successfully!');
+// Add mouse move parallax effect
+document.addEventListener('mousemove', (e) => {
+    const heroImage = document.querySelector('.hero-image-wrapper');
+    const floatingBadge = document.querySelector('.floating-badge');
+    
+    if (heroImage && window.innerWidth > 768) {
+        const x = (e.clientX / window.innerWidth - 0.5) * 20;
+        const y = (e.clientY / window.innerHeight - 0.5) * 20;
+        heroImage.style.transform += ` translate(${x}px, ${y}px)`;
+    }
+    
+    if (floatingBadge) {
+        const x = (e.clientX / window.innerWidth - 0.5) * 10;
+        const y = (e.clientY / window.innerHeight - 0.5) * 10;
+        floatingBadge.style.transform += ` translate(${x}px, ${y}px)`;
+    }
+});
+
+// Add number counter animation for education percentages
+function animateValue(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const current = Math.floor(progress * (end - start) + start);
+        element.textContent = current + '%';
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            element.textContent = end + '%';
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// Observe progress bars and animate numbers
+const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const progressBar = entry.target;
+            const width = parseFloat(progressBar.style.width);
+            const parent = progressBar.closest('.education-card');
+            const gradeElement = parent?.querySelector('.education-grade strong');
+            
+            if (gradeElement && width > 0) {
+                animateValue(gradeElement, 0, Math.round(width), 2000);
+            }
+            
+            progressObserver.unobserve(progressBar);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.education-progress').forEach(bar => {
+    progressObserver.observe(bar);
+});
+
+// Add smooth scroll reveal for timeline items
+const timelineItems = document.querySelectorAll('.timeline-item');
+timelineItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-50px)';
+    item.style.transition = `opacity 0.8s ease ${index * 0.2}s, transform 0.8s ease ${index * 0.2}s`;
+    
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateX(0)';
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    timelineObserver.observe(item);
+});
+
+console.log('Portfolio loaded successfully with enhanced animations!');
