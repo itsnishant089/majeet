@@ -12,7 +12,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             introLoader.style.display = 'none';
         }, 500);
-    }, 3500); // Total animation time: 3.5 seconds
+    }, 2000); // Total animation time: 2 seconds
 });
 
 // Mobile Menu Toggle
